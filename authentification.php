@@ -24,15 +24,15 @@ if (isset($_POST['connexion'])) {
 	<div class="pageAuth">
 		<div class="hautAuth">
 			<div class="logo"><img src="images/logoQuiz.png" style="width: 100px; height: 120px;"></div>
-			<h2>Le plaisir de jouer</h2>
+			<h2 class="align1">Le plaisir de jouer</h2>
 		</div>
-		<div class="LoginForm"><h2>Login Form</h2></div>
+		<div class="LoginForm"><h2 class="align">Login Form</h2><b>x</b></div>
 		<div class="formulaire">
 			<form method="POST" action="">
 				<input type="text" name="login" class="form-control" placeholder="Login" value="<?php echo $login?>">
-				<img src="images/icones/ic-login.png">
+				<div class="ic"></div>
 				<input type="password" name="password" class="form-control" placeholder="Password">
-				<img src="images/icones/ic-password.png">
+				<div class="icp"></div>
 				<span><?php if(!empty($error)){ echo $error; } ?></span><br>
 				<input type="submit" name="connexion" class="btn-connexion" value="connexion">
 			</form>
