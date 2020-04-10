@@ -30,9 +30,7 @@ if (isset($_POST['connexion'])) {
 		<div class="formulaire">
 			<form method="POST" action="">
 				<input type="text" name="login" class="form-control" placeholder="Login" value="<?php echo $login?>">
-				<div class="ic"></div>
-				<input type="password" name="password" class="form-control" placeholder="Password">
-				<div class="icp"></div>
+				<input type="password" name="password" class="form-control1" placeholder="Password">
 				<span><?php if(!empty($error)){ echo $error; } ?></span><br>
 				<input type="submit" name="connexion" class="btn-connexion" value="connexion">
 			</form>

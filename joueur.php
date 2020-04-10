@@ -1,7 +1,15 @@
+<?php
+
+$file = "fichier.json";
+$data = file_get_contents($file);
+$obj = json_decode($data,true);
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Liste Questions</title>
+	<title>page joueur</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
@@ -13,8 +21,13 @@
 		</div>
 		<div class="pageAdmin">
 			<div class="haut">
-				<div class="photoJoueur"></div>
-			BIENVENUE SUR LA PLATEFORME DE JEU DE QUIZZ<br>
+				<div class="photoJoueur">
+					<img src="images/<?php if(isset($_GET['id'])){ echo $obj['joueurs'][$_GET['id']]['image'];}?>">
+				</div>
+				<i><?php if(isset($_GET['id'])){ echo $obj['joueurs'][$_GET['id']]['prenom'] ."<br>".
+					 $obj['joueurs'][$_GET['id']]['nom']; } ?>	
+				</i>
+				BIENVENUE SUR LA PLATEFORME DE JEU DE QUIZZ<br>
 				JOUER ET TESTER VOTRE NIVEAU DE CULTURE GÉNÉRALE
 			</div>
 			<a href="authentification.php">

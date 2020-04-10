@@ -1,5 +1,5 @@
 <?php 
-$nom=$prenom=$Login=$password=$confirmer=$image="";
+$nom=$prenom=$Login=$password=$confirmer=$image=$error="";
 
 /*if (isset($_POST['valider'])) 
 {	//file.php permet le traitement de l'image si on veut l'enregistrer dans un dossier du projet
@@ -8,7 +8,7 @@ $nom=$prenom=$Login=$password=$confirmer=$image="";
 if(isset($_POST['connexion']))
 {
 	$prenom = $_POST['prenom']; $nom = $_POST['nom']; $Login= $_POST['Login']; 
-	$password= $_POST['password']; $confirmer = $_POST['confirmer']; $image = $_POST['image'];
+	$password= $_POST['password']; $confirmer = $_POST['confirmer']; $image = $_FILES['image']['name'];
 
 	if(!empty($prenom) && !empty($nom) && !empty($Login) && !empty($password) && !empty($confirmer) &&  !empty($image)){
 
@@ -38,13 +38,13 @@ if(isset($_POST['connexion']))
 				file_put_contents('fichier.json', $json);
 				echo "l'admin' a bien été ajouté";
 			}else{
-				echo "<center><strong>login dejà utilisé</strong></center>";
+				$error = "login dejà utilisé";
 			}
 		}else{
-			echo "<center><strong>les deux mot de passe doivent etre identiques</strong></center>";
+			$error = "les deux mot de passe doivent etre identiques";
 		}
 	}else{
-		echo "remplissez tout les champs svp";
+		$error = "remplissez tout les champs svp";
 	}
 }
 $file = "fichier.json";
@@ -83,10 +83,10 @@ $obj = json_decode($data,true);
 			<div class="menu-side">
 				<div class="infoAdmin">
 					<div class="picture">
-				
+						<img src="images/<?php if(isset($_GET['id'])){ echo $obj['admins'][$_GET['id']]['image'];}?>">
 					</div>
-					<?php if(isset($_GET['id'])){ echo $obj['admins'][$_GET['id']]['prenom'] ."<br>".
-					  $obj['admins'][$_GET['id']]['nom']; } ?><br>
+					<i><?php if(isset($_GET['id'])){ echo $obj['admins'][$_GET['id']]['prenom'] ."<br>".
+					  $obj['admins'][$_GET['id']]['nom']; } ?></i><br>
 				</div>
 				 <div class="vertical-menu">
 					  <a href="#">Liste Questions<img src="images/icones/ic-liste.png" class="icone"></a>
@@ -115,6 +115,7 @@ $obj = json_decode($data,true);
 					<div class="avatarAdmin">
 						<img  id="output" style="width: 200px; height: 200px; border-radius: 100%;">
 					</div>
+					<span><?php if(!empty($error)){ echo $error; } ?></span><br>
 					<input type="submit" name="connexion" class="btn-admin" value="créer compte">
 				</form>
 			</div>
