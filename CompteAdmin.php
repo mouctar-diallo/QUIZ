@@ -72,8 +72,8 @@ $obj = json_decode($data,true);
 <body>
 	<div class="pageAuth">
 		<div class="hautAuth">
-			<div class="logo"><img src="images/logoQuiz.png" style="width: 100px; height: 120px;"></div>
-			<h2>Le plaisir de jouer</h2>
+			<div class="logo"><img src="images/logoQuiz.png"></div>
+			<h2 class="align1">Le plaisir de jouer</h2>
 		</div>
 		<div class="pageAdmin">
 			<div class="haut">CRÉER ET PARAMÉRTER VOS QUIZZ</div>
@@ -113,8 +113,10 @@ $obj = json_decode($data,true);
 					<input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
 					<input type="file" name="image" accept="image/*"  class="form-admin" onchange="loadFile(event)"><br>
 					<div class="avatarAdmin">
-						<img  id="output" style="width: 200px; height: 200px; border-radius: 100%;">
+						<img  id="output">
+						<h4>Avatar Admin</h4>
 					</div>
+
 					<span><?php if(!empty($error)){ echo $error; } ?></span><br>
 					<input type="submit" name="connexion" class="btn-admin" value="créer compte">
 				</form>

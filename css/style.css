@@ -95,8 +95,11 @@ h5 a{
 	float: left;
 	margin: 0 auto;
 	background-size: cover;
-	/*background-image: url(../images/logoQuiz.png);*/
 	background-repeat: no-repeat;
+}
+.logo img{
+	width: 100px; 
+	height: 120px;
 }
 
 .CompteUser{
@@ -116,6 +119,14 @@ h5 a{
 	margin-top: -40%;
 	border-radius: 100px;
 	margin-right: 5%;
+}
+.avatar img{
+	width: 200px; 
+	height: 200px; 
+	border-radius: 100%;
+}
+.avatar h4{
+	margin-left: 35px;
 }
 label {
 	display: block;
@@ -169,6 +180,9 @@ label {
 	margin-top: 15px;
 	border-radius: 10px;
 }
+.page-droite strong{
+	color: #20B2AA;
+}
 .menu-side{
 	margin-left: 0%;
 	margin-top: 30px;
@@ -193,6 +207,14 @@ label {
 	margin-right: 2%;
 	border-color: #0086b3;
 } 
+.avatarAdmin h4{
+	margin-left: 50px;
+}
+.avatarAdmin img{
+	width: 200px; 
+	height: 200px; 
+	border-radius: 100%;
+}
 .picture{
 	float: left;
 	width: 100px;
@@ -334,6 +356,11 @@ strong{
 	height: 400px;
 	border-style:double;
 	border-color: burlywood;
+}
+.liste li{
+	list-style-type: none;
+	margin-bottom:5px;
+	margin-left: 35px;
 }
 .listeJoueur{
 	width: 96%;

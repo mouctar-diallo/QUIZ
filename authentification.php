@@ -23,7 +23,7 @@ if (isset($_POST['connexion'])) {
 <body>
 	<div class="pageAuth">
 		<div class="hautAuth">
-			<div class="logo"><img src="images/logoQuiz.png" style="width: 100px; height: 120px;"></div>
+			<div class="logo"><img src="images/logoQuiz.png"></div>
 			<h2 class="align1">Le plaisir de jouer</h2>
 		</div>
 		<div class="LoginForm"><h2 class="align">Login Form</h2><b>x</b></div>

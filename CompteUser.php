@@ -73,8 +73,8 @@ if(isset($_POST['connexion']))
 <body>
 	<div class="pageAuth">
 		<div class="hautAuth">
-			<div class="logo"><img src="images/logoQuiz.png" style="width: 100px; height: 120px;"></div>
-			<h2>Le plaisir de jouer</h2>
+			<div class="logo"><img src="images/logoQuiz.png"></div>
+			<h2 class="align1">Le plaisir de jouer</h2>
 		</div>
 		<div class="CompteUser">
 			<h4>S'inscrire pour tester votre niveau de culture génerale</h4> <hr>
@@ -94,7 +94,8 @@ if(isset($_POST['connexion']))
 				<input type="file" name="image" accept="image/*" class="form-inscription" onchange="loadFile(event)"><br>
 				<!--<input type="submit" name="valider" value="afficher image" class="form-image"/><br>-->
 				<div class="avatar">
-					<img  id="output" style="width: 200px; height: 200px; border-radius: 100%;">
+					<img  id="output">
+					<h4>Avatar du joueur</h4>
 				</div>
 				<input type="submit" name="connexion" class="btn-inscription" value="créer compte">
 			</form>

@@ -16,8 +16,8 @@ $obj = json_decode($data,true);
 
 <div class="pageAuth">
 		<div class="hautAuth">
-			<div class="logo"><img src="images/logoQuiz.png" style="width: 100px; height: 120px;"></div>
-			<h2>Le plaisir de jouer</h2>
+			<div class="logo"><img src="images/logoQuiz.png"></div>
+			<h2 class="align1">Le plaisir de jouer</h2>
 		</div>
 		<div class="pageAdmin">
 			<div class="haut">

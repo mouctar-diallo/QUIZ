@@ -17,6 +17,10 @@ function redirectionUser($login,$password)
 		}
 	}
 }
+/*//enregistrement de la question
+function saveQuestions(){
+    
+}*/
 //fonction permettant de telecharger l'image dans le dossier images du projet
 function loadImage()
 {
