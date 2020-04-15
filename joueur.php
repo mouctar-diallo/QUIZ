@@ -1,9 +1,6 @@
 <?php
-
-$file = "fichier.json";
-$data = file_get_contents($file);
-$obj = json_decode($data,true);
-
+include('fonction.php');
+is_connect();
 ?>
 
 <!DOCTYPE html>
@@ -22,15 +19,15 @@ $obj = json_decode($data,true);
 		<div class="pageAdmin">
 			<div class="haut">
 				<div class="photoJoueur">
-					<img src="images/<?php if(isset($_GET['id'])){ echo $obj['joueurs'][$_GET['id']]['image'];}?>">
+					<img src="images/<?php if(isset($_SESSION['joueur'])){ echo $_SESSION['joueur']['image'];}?>">
 				</div>
-				<i><?php if(isset($_GET['id'])){ echo $obj['joueurs'][$_GET['id']]['prenom'] ."<br>".
-					 $obj['joueurs'][$_GET['id']]['nom']; } ?>	
+				<i><?php if(isset($_SESSION['joueur'])){ echo $_SESSION['joueur']['nom'] ."<br>".
+					 $_SESSION['joueur']['prenom']; } ?>	
 				</i>
 				BIENVENUE SUR LA PLATEFORME DE JEU DE QUIZZ<br>
 				JOUER ET TESTER VOTRE NIVEAU DE CULTURE GÉNÉRALE
 			</div>
-			<a href="authentification.php">
+			<a href="authentification.php?statut=deconnecter">
 				<input type="submit" name="deconnexion" class="btn-deconnexion" value="Déconnexion">
 			</a>
 			<div class="ReponseJoueur"></div>

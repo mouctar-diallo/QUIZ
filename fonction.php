@@ -1,4 +1,5 @@
 <?php
+session_start();
 function redirectionUser($login,$password)
 {
 	$file = "fichier.json";
@@ -7,20 +8,34 @@ function redirectionUser($login,$password)
 	//controle page admin
 	for ($i=0; $i <count($obj['admins']); $i++) { 
 		if ($login==$obj['admins'][$i]['Login'] && $password==$obj['admins'][$i]['password']) {
-			header('location:CompteAdmin.php?id='.$i);
+      $_SESSION['admin'] = $obj['admins'][$i];
+      $_SESSION['statut'] = 'connecter';
+			header('location:CompteAdmin.php');
 		}
 	}
 	//controle page joueur
 	for ($i=0; $i <count($obj['joueurs']); $i++) { 
 		if ($login==$obj['joueurs'][$i]['Login'] && $password==$obj['joueurs'][$i]['password']) {
-			header('location:joueur.php?id='.$i);
+      $_SESSION['joueur'] = $obj['joueurs'][$i];
+      $_SESSION['statut'] = 'connecter';
+			header('location:joueur.php');
 		}
 	}
 }
-/*//enregistrement de la question
-function saveQuestions(){
-    
-}*/
+//deconnexion des users
+function deconnexion(){
+  unset($_SESSION['admin']);
+  unset($_SESSION['joueur']);
+  unset($_SESSION['statut']);
+  session_destroy();
+}
+//tester si l'user est connecter
+function is_connect(){
+  if (!isset($_SESSION['statut'])) {
+    header('location:authentification.php');
+  }
+}
+
 //fonction permettant de telecharger l'image dans le dossier images du projet
 function loadImage()
 {

@@ -1,4 +1,6 @@
 <?php
+//var_dump($_POST);
+
 function listeQuestions()
 {
 	$json = 'test.json';
@@ -76,8 +78,8 @@ function listeQuestions()
 						<?php listeQuestions(); ?>
 					</div>
 					<input type="submit" name="suivant" value="suivant" class="btn-suivant">
+				</form>
 			</div>
-			</form>
 			<!-- end -->
 	</div>
 	</div>

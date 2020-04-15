@@ -1,10 +1,8 @@
 <?php 
+include('fonction.php');
+is_connect();
 $nom=$prenom=$Login=$password=$confirmer=$image=$error="";
 
-/*if (isset($_POST['valider'])) 
-{	//file.php permet le traitement de l'image si on veut l'enregistrer dans un dossier du projet
-	//include('file.php');
-}*/
 if(isset($_POST['connexion']))
 {
 	$prenom = $_POST['prenom']; $nom = $_POST['nom']; $Login= $_POST['Login']; 
@@ -47,11 +45,6 @@ if(isset($_POST['connexion']))
 		$error = "remplissez tout les champs svp";
 	}
 }
-$file = "fichier.json";
-$data = file_get_contents($file);
-$obj = json_decode($data,true);
-
-//var_dump($obj);
 ?>
 <!DOCTYPE html>
 <html>
@@ -77,16 +70,16 @@ $obj = json_decode($data,true);
 		</div>
 		<div class="pageAdmin">
 			<div class="haut">CRÉER ET PARAMÉRTER VOS QUIZZ</div>
-			<a href="authentification.php">
+			<a href="authentification.php?statut=deconnecter">
 				<input type="submit" name="deconnexion" class="btn-deconnexion" value="Déconnexion">
 			</a>
 			<div class="menu-side">
 				<div class="infoAdmin">
 					<div class="picture">
-						<img src="images/<?php if(isset($_GET['id'])){ echo $obj['admins'][$_GET['id']]['image'];}?>">
+						<img src="images/<?php if(isset($_SESSION['admin'])){ echo $_SESSION['admin']['image'];}?>">
 					</div>
-					<i><?php if(isset($_GET['id'])){ echo $obj['admins'][$_GET['id']]['prenom'] ."<br>".
-					  $obj['admins'][$_GET['id']]['nom']; } ?></i><br>
+					<i><?php if(isset($_SESSION['admin'])){ echo $_SESSION['admin']['nom'] ."<br>".
+					  $_SESSION['admin']['prenom']; } ?></i><br>
 				</div>
 				 <div class="vertical-menu">
 					  <a href="#">Liste Questions<img src="images/icones/ic-liste.png" class="icone"></a>

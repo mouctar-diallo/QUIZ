@@ -1,3 +1,4 @@
+//generation des inputs dynamique page Questionnaire DEBUT
 var increment=0;
 var control=0;
 function dynamique(){
@@ -76,10 +77,7 @@ function dynamique(){
 	}
 }
 }
-/*function Check()
-{
-	var box = document.getElementById('check')
-	if (box.type.toLowerCase()=='checkbox'  && c.checked == true) { 
-	
-	}
-}*/
+//generation des inputs dynamique page Questionnaire FIN
+
+//*************************************************************************************************
+

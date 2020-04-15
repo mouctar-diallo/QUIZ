@@ -1,10 +1,6 @@
 <?php 
 $nom=$prenom=$Login=$password=$confirmer=$image="";
 
-/*if (isset($_POST['valider'])) 
-{	//traitement de l'image si on veut l'enregistrer dans un dossier du projet
-	//include('file.php');
-}*/
 if(isset($_POST['connexion']))
 {
 	$prenom = $_POST['prenom']; $nom = $_POST['nom']; $Login = $_POST['Login']; 
@@ -48,10 +44,6 @@ if(isset($_POST['connexion']))
 		echo "remplissez tout les champs svp";
 	}
 }
-//si on trouve le meme login
-	/*if (isset($_GET['unique'])) {
-		echo "<center><strong>ce login est dejà utilisé</center></strong>";
-	}*/
 ?>
 
 <!DOCTYPE html>

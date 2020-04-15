@@ -1,5 +1,5 @@
 body{
-
+	
 }
 span{
 	text-align: center;
@@ -7,10 +7,6 @@ span{
 	display: block;
 }
 .pageAuth{
-	width: 80%;
-	margin-left: 10%;
-	margin-right: 10%;
-	margin-top: 2%;
 	height: 730px;
 	background-image: url(../images/bg.jpg);
 	background-size: cover;
@@ -116,7 +112,7 @@ h5 a{
 	border-color: #0086b3;
 	width: 200px;
 	height:200px;
-	margin-top: -40%;
+	margin-top: -30%;
 	border-radius: 100px;
 	margin-right: 5%;
 }
@@ -202,7 +198,7 @@ label {
 	border-color: #0086b3;
 	width: 200px;
 	height:200px;
-	margin-top: -50%;
+	margin-top: -40%;
 	border-radius: 100px;
 	margin-right: 2%;
 	border-color: #0086b3;
@@ -361,6 +357,7 @@ strong{
 	list-style-type: none;
 	margin-bottom:5px;
 	margin-left: 35px;
+	font-size: 18px;
 }
 .listeJoueur{
 	width: 96%;
@@ -431,7 +428,7 @@ select{
 }
 .ReponseJoueur{
 	width: 63%;
-	margin-top: 10px;
+	margin-top: 7px;
 	margin-left: 2%;
 	height: 490px;
 	background-color: white;
@@ -442,7 +439,7 @@ select{
 .TopScorer{
 	width: 32%;
 	height: 490px;
-	margin-top: -48%;
+	margin-top: -39%;
 	float: right;
 	margin-right: 1%;
 	background-color: white;
