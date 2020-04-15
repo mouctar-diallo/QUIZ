@@ -1,7 +1,7 @@
 <?php 
 include('fonction.php');
 is_connect();
-$nom=$prenom=$Login=$password=$confirmer=$image=$error="";
+$nom=$prenom=$Login=$password=$confirmer=$image=$message="";
 
 if(isset($_POST['connexion']))
 {
@@ -34,17 +34,18 @@ if(isset($_POST['connexion']))
 				$json['admins'][] = $Admin;
 				$json = json_encode($json);
 				file_put_contents('fichier.json', $json);
-				echo "l'admin' a bien été ajouté";
+				$message = "l'admin' a bien été ajouté";
 			}else{
-				$error = "login dejà utilisé";
+				$message = "login dejà utilisé";
 			}
 		}else{
-			$error = "les deux mot de passe doivent etre identiques";
+			$message = "les deux mot de passe doivent etre identiques";
 		}
 	}else{
-		$error = "remplissez tout les champs svp";
+		$message = "remplissez tout les champs svp";
 	}
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -91,17 +92,22 @@ if(isset($_POST['connexion']))
 			<!-- contenue des pages-->
 			<div class="page-droite">
 				<strong>S'inscrire pour proposer des quiz</strong> <hr>
-				<form method="POST" action="" enctype="multipart/form-data">
+				<form method="POST" action="" id="formulaire-admin" enctype="multipart/form-data">
 					<label>Prenom</label>
-					<input type="text" name="prenom" class="form-admin" value="<?php echo $prenom;?>">
+					<span id="error-1"></span>
+					<input type="text" name="prenom" error="error-1" class="form-admin" value="<?php echo $prenom;?>">
 					<label>Nom</label>
-					<input type="text" name="nom" class="form-admin" value="<?php echo $nom;?>">
+					<span id="error-2"></span>
+					<input type="text" name="nom" error="error-2" class="form-admin" value="<?php echo $nom;?>">
 					<label>Login</label>
-					<input type="text" name="Login" class="form-admin" value="<?php echo $Login;?>">
+					<span id="error-3"></span>
+					<input type="text" name="Login" error="error-3" class="form-admin" value="<?php echo $Login;?>">
 					<label>Password</label>
-					<input type="password" name="password" class="form-admin" value="<?php echo $password;?>">
+					<span id="error-4"></span>
+					<input type="password" name="password" error="error-4" class="form-admin" value="<?php echo $password;?>">
 					<label>Confirmer Password</label>
-					<input type="password" name="confirmer" class="form-admin" value="<?php echo $confirmer;?>"><br>
+					<span id="error-5"></span>
+					<input type="password" name="confirmer" error="error-5" class="form-admin" value="<?php echo $confirmer;?>"><br>
 					<label>Image</label>
 					<input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
 					<input type="file" name="image" accept="image/*"  class="form-admin" onchange="loadFile(event)"><br>
@@ -109,8 +115,7 @@ if(isset($_POST['connexion']))
 						<img  id="output">
 						<h4>Avatar Admin</h4>
 					</div>
-
-					<span><?php if(!empty($error)){ echo $error; } ?></span><br>
+					<span><?php if(!empty($message)){ echo $message; } ?></span><br>
 					<input type="submit" name="connexion" class="btn-admin" value="créer compte">
 				</form>
 			</div>
@@ -119,3 +124,35 @@ if(isset($_POST['connexion']))
 	</div>
 </body>
 </html>
+
+<script type="text/javascript">
+	const inputs = document.getElementsByTagName('input');
+	for (input of inputs) {
+		input.addEventListener('keyup',function(e){
+			if (e.target.hasAttribute('error')) {
+				var spanError = e.target.getAttribute('error');
+				document.getElementById(spanError).innerText="";
+			}
+		});
+	}
+	//controler les champs vides du formulaire
+	document.getElementById('formulaire-admin').addEventListener('submit',function(e){
+		const inputs = document.getElementsByTagName('input');
+		var erreur = false;
+		for (input of inputs) {
+			if(input.hasAttribute('error')){
+				var spanError = input.getAttribute('error');
+				if(!input.value){
+					document.getElementById(spanError).innerText="champ obligatoire";
+					erreur = true;
+				}else{
+					document.getElementById(spanError).innerText="";
+				}
+			}
+		}
+		if (erreur) {
+			e.preventDefault();
+		}
+		return false;
+	});
+</script>

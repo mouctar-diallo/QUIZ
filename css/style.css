@@ -176,6 +176,20 @@ label {
 	margin-top: 15px;
 	border-radius: 10px;
 }
+.page-droite form span{
+	font-size: 13px;
+	float: right;
+	margin-right: 65%;
+	color: red;
+	margin-top: -2%;
+}
+.CompteUser form span{
+	font-size: 13px;
+	float: right;
+	margin-right: 75%;
+	color: red;
+	margin-top: -1.5%;
+}
 .page-droite strong{
 	color: #20B2AA;
 }
@@ -371,10 +385,26 @@ strong{
 .btn-suivant{
 	float: right;
 	margin-top: 3px;
-	margin-right: 4px;
+	margin-right: 10px;
 	background-color:   #20B2AA;
 	width: 25%;
 	height: 30px;
+}
+.btn-suiv-joueur{
+	float: right;
+	margin-top: 430px;
+	margin-right: 20px;
+	background-color:   #3addd6;
+	width: 20%;
+	height: 50px;
+}
+.btn-prec-joueur{
+	float: left;
+	margin-top: 430px;
+	margin-left: 20px;
+	background-color:   #818181;
+	width: 20%;
+	height: 50px;
 }
 .questionnaire{
 	width: 96%;

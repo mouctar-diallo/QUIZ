@@ -30,7 +30,10 @@ is_connect();
 			<a href="authentification.php?statut=deconnecter">
 				<input type="submit" name="deconnexion" class="btn-deconnexion" value="Déconnexion">
 			</a>
-			<div class="ReponseJoueur"></div>
+			<div class="ReponseJoueur">
+				<input type="submit" name="btn-suivant" class="btn-suiv-joueur" value="suivant">
+				<input type="submit" name="btn-precedent" class="btn-prec-joueur" value="precedent">
+			</div>
 			<div class="TopScorer">
 				<div class="top">
 					<a href="#">Top scores</a>

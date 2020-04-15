@@ -22,6 +22,7 @@ function redirectionUser($login,$password)
 		}
 	}
 }
+
 //deconnexion des users
 function deconnexion(){
   unset($_SESSION['admin']);

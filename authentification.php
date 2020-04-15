@@ -1,17 +1,20 @@
 <?php
 include('fonction.php');
-if (isset($_GET['statut']) && $_GET['statut']=='deconnecter') {
+if (isset($_GET['statut']) && $_GET['statut']=='deconnecter') 
+{	
 	deconnexion();
 }
 $login = ""; $error = "";
-if (isset($_POST['connexion'])) {
+if (isset($_POST['connexion'])) 
+{
 	$login =  $_POST['login'];
 	$password = $_POST['password'];
-	redirectionUser($login,$password);
-	if (!empty($login) && !empty($password)) {
-		
+	if (!empty($login) && !empty($password)) 
+	{
 		redirectionUser($login,$password);
 		$error = "login ou mot de passe incorrecte";
+	}else{
+		$error = "tout les champs sont obligatoire";
 	}
 }
 ?>
@@ -71,8 +74,8 @@ if (isset($_POST['connexion'])) {
 		}
 		if (erreur) {
 			e.preventDefault();
-			return false;
 		}
+		return false;
 	});
 </script>
 
