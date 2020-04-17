@@ -4,7 +4,7 @@
 	<div class="colonne">Prénom</div>
 	<div class="colonne">Score</div>
     <?php
-		$fichier = '../fichier.json';
+		$fichier = 'fichier.json';
 		$fichier = file_get_contents($fichier);
 		$players = json_decode($fichier,true);
 		foreach ($players['joueurs'] as $joueur) { ?>

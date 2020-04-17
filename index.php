@@ -1,4 +1,6 @@
-
+<?php 
+	include('fonction.php'); 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,7 +14,22 @@
 			<h2 class="align1">Le plaisir de jouer</h2>
 		</div>
 		<?php
-			require_once('authentification.php');
+			if (isset($_GET['controlPage'])) 
+			{
+				$page = $_GET['controlPage'];
+				switch ($page) 
+				{
+					case 'accueil':
+						include('pages/accueil.php');
+					break;
+					case 'jeux':
+						include('pages/jeux.php');
+					break;
+				}
+			}
+			if (!isset($_GET['controlPage'])) {
+				require_once('authentification.php');
+			}
 		?>
 	</div>
 </body>

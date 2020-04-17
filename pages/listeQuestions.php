@@ -2,7 +2,7 @@
 
 function listeQuestions()
 {
-	$json = '../test.json';
+	$json = 'test.json';
 	$liste = file_get_contents($json);
 	$liste = json_decode($liste,true);
 	for ($i=0; $i < count($liste['questions']) ; $i++) { 

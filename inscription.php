@@ -20,20 +20,27 @@ if(isset($_POST['connexion']))
 	            }
 	        }
 			if ($testeur==1) {
-		        $joueur = array();
-				$joueur['prenom'] = $prenom;
-				$joueur['nom'] = $nom;
-				$joueur['Login'] = $Login;
-				$joueur['password'] = $password;
-				$joueur['confirmer'] = $confirmer;
-				$joueur['image'] = $image;
-				$joueur['score'] = 0;
-				$joueur['profil'] = 'joueur';
-				$json['joueurs'][] = $joueur;
-				$json = json_encode($json);
-				file_put_contents('fichier.json', $json);
 
-				header('location:index.php');
+				$message = loadImage();
+				if ($message) 
+				{
+					$joueur = array();
+					$joueur['prenom'] = $prenom;
+					$joueur['nom'] = $nom;
+					$joueur['Login'] = $Login;
+					$joueur['password'] = $password;
+					$joueur['confirmer'] = $confirmer;
+					$joueur['image'] = $image;
+					$joueur['score'] = 0;
+					$joueur['profil'] = 'joueur';
+					$json['joueurs'][] = $joueur;
+					$json = json_encode($json);
+					file_put_contents('fichier.json', $json);
+
+					header('location:index.php');
+				}else{ 
+					$message = "seul les extensions jpg et jpeg sont autorisé";
+				} 
 			}else{
 				$message = "login dejà utilisé";
 			}
@@ -88,8 +95,7 @@ if(isset($_POST['connexion']))
 				<input type="password" name="confirmer" error ="error-5" class="form-inscription" value="<?php echo $confirmer?>"><br>
 				<label>Image</label>
 				<input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
-				<input type="file" name="image" accept="image/*" class="form-inscription" onchange="loadFile(event)"><br>
-				<!--<input type="submit" name="valider" value="afficher image" class="form-image"/><br>-->
+				<input type="file" name="image" class="form-inscription" onchange="loadFile(event)"><br>
 				<div class="avatar">
 					<img  id="output">
 					<h4>Avatar du joueur</h4>

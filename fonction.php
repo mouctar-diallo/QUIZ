@@ -10,7 +10,7 @@ function redirectionUser($login,$password)
 		if ($login==$obj['admins'][$i]['Login'] && $password==$obj['admins'][$i]['password']) {
       $_SESSION['admin'] = $obj['admins'][$i];
       $_SESSION['statut'] = 'connecter';
-			header('location:pages/accueil.php');
+			header('location:index.php?controlPage=accueil');
 		}
 	}
 	//controle page joueur
@@ -18,7 +18,7 @@ function redirectionUser($login,$password)
 		if ($login==$obj['joueurs'][$i]['Login'] && $password==$obj['joueurs'][$i]['password']) {
       $_SESSION['joueur'] = $obj['joueurs'][$i];
       $_SESSION['statut'] = 'connecter';
-			header('location:pages/jeux.php');
+			header('location:index.php?controlPage=jeux');
 		}
 	}
 }
@@ -33,32 +33,33 @@ function deconnexion(){
 //tester si l'user est connecter
 function is_connect(){
   if (!isset($_SESSION['statut'])) {
-    header('location:../index.php');
+    header('location:index.php');
   }
 }
 
-//fonction permettant de telecharger l'image dans le dossier images du projet
+
 function loadImage()
 {
+  $infoPhoto = false;
   // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
   if (isset($_FILES['image']) AND $_FILES['image']['error'] == 0)
   {
     // Testons si le fichier n'est pas trop gros
-    if ($_FILES['image']['size'] <= 1000000)
+    if ($_FILES['image']['size'] <= 2000000)
     {
       // Testons si l'extension est autorisée
       $infosfichier = pathinfo($_FILES['image']['name']);
       $extension_upload = $infosfichier['extension'];
       //les extensions autorises
-      $extensions_autorisees = array('jpg','jpeg','png');
+      $extensions_autorisees = array('jpg','jpeg');
       if (in_array($extension_upload, $extensions_autorisees))
       {
-        // On peut valider le fichier et le stocker 
+        // On peut valider le fichier et le stocker dans le dossier image du projet
         move_uploaded_file($_FILES['image']['tmp_name'], 'images/' . basename($_FILES['image']['name']));
+        $infoPhoto = true;
       }
-    }else{
-      echo "la taille de l'image est trop grande";
     }
-} 
+  }
+  return $infoPhoto; 
 }
 ?>

@@ -1,5 +1,4 @@
 <?php
-include('fonction.php');
 if (isset($_GET['statut']) && $_GET['statut']=='deconnecter') 
 {	
 	deconnexion();

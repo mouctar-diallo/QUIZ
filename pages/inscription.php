@@ -22,18 +22,25 @@ if(isset($_POST['connexion']))
 	            }
 	        }
 			if ($testeur==1) {
-				$Admin = array();
-				$Admin['prenom'] = $prenom;
-				$Admin['nom'] = $nom;
-				$Admin['Login'] = $Login;
-				$Admin['password'] = $password;
-				$Admin['confirmer'] = $confirmer;
-				$Admin['image'] = $image;
-				$Admin['profil'] = 'Admin';
-				$json['admins'][] = $Admin;
-				$json = json_encode($json);
-				file_put_contents('../fichier.json', $json);
-				$message = "l'admin' a bien été ajouté";
+				$message = loadImage();
+				if($message)
+				{
+					$Admin = array();
+					$Admin['prenom'] = $prenom;
+					$Admin['nom'] = $nom;
+					$Admin['Login'] = $Login;
+					$Admin['password'] = $password;
+					$Admin['confirmer'] = $confirmer;
+					$Admin['image'] = $image;
+					$Admin['profil'] = 'Admin';
+					$json['admins'][] = $Admin;
+					$json = json_encode($json);
+					file_put_contents('../fichier.json', $json);
+					$message = "l'admin' a bien été ajouté";
+				}else{ 
+					$message = "seul les extensions jpg et jpeg sont autorisé";
+				}
+				
 			}else{
 				$message = "login dejà utilisé";
 			}
@@ -65,12 +72,12 @@ if(isset($_POST['connexion']))
 	<input type="password" name="confirmer" error="error-5" class="form-admin" value="<?php echo $confirmer;?>"><br>
 	<label>Image</label>
 	<input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
-	<input type="file" name="image" accept="image/*"  class="form-admin" onchange="loadFile(event)"><br>
+	<input type="file" name="image" class="form-admin" onchange="loadFile(event)"><br>
 	<div class="avatarAdmin">
 		<img  id="output">
 		<h4>Avatar Admin</h4>
-	</div>
-	<span><?php if(!empty($message)){ echo $message; } ?></span><br>
+	</div><br>
+	<span><?php if(!empty($message)){ echo $message; } ?></span>
 	<input type="submit" name="connexion" class="btn-admin" value="créer compte">
 </form>
 
