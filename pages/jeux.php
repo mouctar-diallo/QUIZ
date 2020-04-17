@@ -1,5 +1,5 @@
 <?php
-include('fonction.php');
+include('../fonction.php');
 is_connect();
 ?>
 
@@ -7,19 +7,19 @@ is_connect();
 <html>
 <head>
 	<title>page joueur</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 <body>
 
 <div class="pageAuth">
 		<div class="hautAuth">
-			<div class="logo"><img src="images/logoQuiz.png"></div>
+			<div class="logo"><img src="../images/logoQuiz.png"></div>
 			<h2 class="align1">Le plaisir de jouer</h2>
 		</div>
 		<div class="pageAdmin">
 			<div class="haut">
 				<div class="photoJoueur">
-					<img src="images/<?php if(isset($_SESSION['joueur'])){ echo $_SESSION['joueur']['image'];}?>">
+					<img src="../images/<?php if(isset($_SESSION['joueur'])){ echo $_SESSION['joueur']['image'];}?>">
 				</div>
 				<i><?php if(isset($_SESSION['joueur'])){ echo $_SESSION['joueur']['nom'] ."<br>".
 					 $_SESSION['joueur']['prenom']; } ?>	
@@ -27,7 +27,7 @@ is_connect();
 				BIENVENUE SUR LA PLATEFORME DE JEU DE QUIZZ<br>
 				JOUER ET TESTER VOTRE NIVEAU DE CULTURE GÉNÉRALE
 			</div>
-			<a href="authentification.php?statut=deconnecter">
+			<a href="../index.php?statut=deconnecter">
 				<input type="submit" name="deconnexion" class="btn-deconnexion" value="Déconnexion">
 			</a>
 			<div class="ReponseJoueur">

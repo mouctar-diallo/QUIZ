@@ -168,7 +168,6 @@ label {
 }
 .page-droite{
 	width: 60%;
-	margin: 0 auto;
 	margin-right: 2%;
 	float: right;
 	background-color: #fff;
@@ -360,7 +359,7 @@ strong{
 	line-height: 100px;
 }
 .liste{
-	width: 96%;
+	width: 93%;
 	margin-top: 1px;
 	margin-left: 2%;
 	height: 400px;
@@ -374,9 +373,9 @@ strong{
 	font-size: 18px;
 }
 .listeJoueur{
-	width: 96%;
-	margin-top: 2px;
-	margin-left: 2%;
+	width: 65%;
+	margin-top: 20px;
+	margin-left: 12%;
 	height: 400px;
 	border-style:double;
 	border-color:  #20B2AA;
@@ -385,7 +384,15 @@ strong{
 .btn-suivant{
 	float: right;
 	margin-top: 3px;
-	margin-right: 10px;
+	margin-right: 22%;
+	background-color:   #20B2AA;
+	width: 25%;
+	height: 30px;
+}
+.btn-suivt{
+	float: right;
+	margin-top: 3px;
+	margin-right: 4%;
 	background-color:   #20B2AA;
 	width: 25%;
 	height: 30px;
@@ -469,7 +476,7 @@ select{
 .TopScorer{
 	width: 32%;
 	height: 490px;
-	margin-top: -39%;
+	margin-top: -38%;
 	float: right;
 	margin-right: 1%;
 	background-color: white;
@@ -479,16 +486,33 @@ select{
 .top{
 	width: 100%;
 	background-color: #20B2AA;
-	height: 30px;
+	height: 20px;
 	margin: 0 auto;
 
 }
-a{
+.top a{
 	color: #fff;
-	padding: 15px;
+	padding: 50px;
+	line-height: 2%;
 	text-decoration: none;
 }
-
+.first-name{
+	width: 32.5%;
+	margin-top: 1px;
+	background-color: grey;
+	float: left;
+	margin-left: 3px;
+	text-align: center;
+}
+.colonne{
+	width: 32.5%;
+	margin-top: 1px;
+	background-color: #20B2AA;
+	float: left;
+	margin-left: 3px;
+	text-align: center;
+	margin-bottom: 1%;
+}
 
 
 

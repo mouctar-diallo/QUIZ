@@ -10,7 +10,7 @@ function redirectionUser($login,$password)
 		if ($login==$obj['admins'][$i]['Login'] && $password==$obj['admins'][$i]['password']) {
       $_SESSION['admin'] = $obj['admins'][$i];
       $_SESSION['statut'] = 'connecter';
-			header('location:CompteAdmin.php');
+			header('location:pages/accueil.php');
 		}
 	}
 	//controle page joueur
@@ -18,7 +18,7 @@ function redirectionUser($login,$password)
 		if ($login==$obj['joueurs'][$i]['Login'] && $password==$obj['joueurs'][$i]['password']) {
       $_SESSION['joueur'] = $obj['joueurs'][$i];
       $_SESSION['statut'] = 'connecter';
-			header('location:joueur.php');
+			header('location:pages/jeux.php');
 		}
 	}
 }
@@ -33,7 +33,7 @@ function deconnexion(){
 //tester si l'user est connecter
 function is_connect(){
   if (!isset($_SESSION['statut'])) {
-    header('location:authentification.php');
+    header('location:../index.php');
   }
 }
 

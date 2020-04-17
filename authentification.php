@@ -19,32 +19,17 @@ if (isset($_POST['connexion']))
 }
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-	<title>AUTHENTIFICATION</title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-</head>
-<body>
-	<div class="pageAuth">
-		<div class="hautAuth">
-			<div class="logo"><img src="images/logoQuiz.png"></div>
-			<h2 class="align1">Le plaisir de jouer</h2>
-		</div>
-		<div class="LoginForm"><h2 class="align">Login Form</h2><b>x</b></div>
-		<div class="formulaire">
-			<form method="POST" action="" id="form-connexion">
-				<input type="text" name="login" error="error-1" class="form-control" placeholder="Login" value="<?php echo $login?>">
-				<span id="error-1"></span>
-				<input type="password" name="password" error="error-2" class="form-control1" placeholder="Password">
-				<span id="error-2"><?php if(!empty($error)){ echo $error; } ?></span><br>
-				<input type="submit" name="connexion" class="btn-connexion" value="connexion">
-			</form>
-				<h5><a href="CompteUser.php">S'inscrire pour jouer ?</a></h5>
-		</div>
-	</div>
-</body>
-</html>
+<div class="LoginForm"><h2 class="align">Login Form</h2><b>x</b></div>
+<div class="formulaire">
+	<form method="POST" action="" id="form-connexion">
+		<input type="text" name="login" error="error-1" class="form-control" placeholder="Login" value="<?php echo $login?>">
+		<span id="error-1"></span>
+		<input type="password" name="password" error="error-2" class="form-control1" placeholder="Password">
+		<span id="error-2"><?php if(!empty($error)){ echo $error; } ?></span><br>
+		<input type="submit" name="connexion" class="btn-connexion" value="connexion">
+	</form>
+		<h5><a href="inscription.php">S'inscrire pour jouer ?</a></h5>
+</div>
 
 <script type="text/javascript">
 	const inputs = document.getElementsByTagName('input');

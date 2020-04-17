@@ -12,7 +12,7 @@
 			<h2 class="align1">Le plaisir de jouer</h2>
 		</div>
 		<?php
-			//require_once('CompteAdmin.php');
+			require_once('authentification.php');
 		?>
 	</div>
 </body>

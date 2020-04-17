@@ -1,6 +1,5 @@
 <?php 
 $nom=$prenom=$Login=$password=$confirmer=$image=$message="";
-
 if(isset($_POST['connexion']))
 {
 	$prenom = $_POST['prenom']; $nom = $_POST['nom']; $Login = $_POST['Login']; 
@@ -28,12 +27,13 @@ if(isset($_POST['connexion']))
 				$joueur['password'] = $password;
 				$joueur['confirmer'] = $confirmer;
 				$joueur['image'] = $image;
+				$joueur['score'] = 0;
 				$joueur['profil'] = 'joueur';
 				$json['joueurs'][] = $joueur;
 				$json = json_encode($json);
 				file_put_contents('fichier.json', $json);
 
-				$message = "le joueur a bien été ajouté";
+				header('location:index.php');
 			}else{
 				$message = "login dejà utilisé";
 			}
