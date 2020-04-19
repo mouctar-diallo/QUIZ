@@ -62,4 +62,33 @@ function loadImage()
   }
   return $infoPhoto; 
 }
+//fonction qui liste les 5 meilleurs joueurs
+function top5_players($tableau)
+{
+  for ($i=0; $i < 5; $i++) 
+  {?>
+    <div class="first-name"><?php echo $tableau[$i]['nom']; ?></div>
+    <div class="first-name"><?php echo $tableau[$i]['prenom']; ?></div>
+    <div class="first-name"><?php echo $tableau[$i]['score']; ?></div> <?php
+  }
+}
+
+//tri des joueurs par score
+function triDecroissant($tab)
+{
+  for ($i=0; $i < (count($tab)-1); $i++) 
+  { 
+    for ($j=$i+1; $j < count($tab) ; $j++) 
+    { 
+      if ($tab[$i]['score'] < $tab[$j]['score']) 
+      {
+        $echange = $tab[$j];
+        $tab[$j]=  $tab[$i];
+        $tab[$i] = $echange;
+      }
+    }
+
+    return $tab;
+  }
+}
 ?>

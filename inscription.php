@@ -1,4 +1,5 @@
 <?php 
+include('fonction.php');
 $nom=$prenom=$Login=$password=$confirmer=$image=$message="";
 if(isset($_POST['connexion']))
 {

@@ -1,8 +1,6 @@
 <?php
 is_connect();
 ?>
-
-
 <!DOCTYPE html>
 <html>
 <head>

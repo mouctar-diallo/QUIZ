@@ -514,5 +514,19 @@ select{
 	margin-bottom: 1%;
 }
 
+.colonne a{
+	text-decoration: none;
+	color: #fff;
+}
+.TopScorer .colonne{
+	width: 47%;
+	float: left;
+	padding: 1%;
+}
+
+.TopScorer .colonne a:focus{
+	background-color: lime;
+}
+
 
 
