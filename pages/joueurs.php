@@ -1,11 +1,11 @@
 <?php 
-$fichier = 'fichier.json';
-$fichier = file_get_contents($fichier);
-$players = json_decode($fichier,true);
+
+$players = getData();
+
 $_SESSION['joueurs'] = $players['joueurs'];
 //trions le tableau sur le score avant de le paginer
 $_SESSION['joueurs'] = triDecroissant($_SESSION['joueurs']);
-$joueurParPage = 4;
+$joueurParPage = 15;
 $totalJoueurs = count($_SESSION['joueurs']);
 $nombrePages = ceil($totalJoueurs/$joueurParPage);
 
@@ -33,7 +33,7 @@ $debut = ($pageActuelle-1)*$joueurParPage;
     <?php
 	    for ($i=$debut; $i < ($debut+$joueurParPage) ; $i++) 
 		{ 
-			if ($i == count( $_SESSION['joueurs'])) 
+			if ($i == count($_SESSION['joueurs'])) 
 			{
 			 	break;
 			}?> 

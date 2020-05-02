@@ -48,6 +48,8 @@ is_connect();
 						include('questions.php');
 					break;
 				}
+			}else{
+				include('joueurs.php');
 			}
 			?>
 		</div>

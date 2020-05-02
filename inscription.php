@@ -10,8 +10,7 @@ if(isset($_POST['connexion']))
 
 		if($password == $confirmer)
 		{
-			$json = file_get_contents('fichier.json');
-			$json = json_decode($json, true);
+			$json = getData();
 			//tester si deux user n'ont pas le meme login
 			$testeur=1;
 	        foreach($json['joueurs'] as $j){
@@ -35,8 +34,7 @@ if(isset($_POST['connexion']))
 					$joueur['score'] = 0;
 					$joueur['profil'] = 'joueur';
 					$json['joueurs'][] = $joueur;
-					$json = json_encode($json);
-					file_put_contents('fichier.json', $json);
+					$json =saveData($json);
 
 					header('location:index.php');
 				}else{ 
@@ -96,7 +94,7 @@ if(isset($_POST['connexion']))
 				<input type="password" name="confirmer" error ="error-5" class="form-inscription" value="<?php echo $confirmer?>"><br>
 				<label>Image</label>
 				<input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
-				<input type="file" name="image" class="form-inscription" onchange="loadFile(event)"><br>
+				<input type="file" name="image" class="btn-file-1" onchange="loadFile(event)"><br>
 				<div class="avatar">
 					<img  id="output">
 					<h4>Avatar du joueur</h4>

@@ -6,6 +6,7 @@
 <head>
 	<title>MINI-PROJET</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
 	<div class="pageAuth">
@@ -28,7 +29,7 @@
 				}
 			}
 			if (!isset($_GET['controlPage'])) {
-				require_once('authentification.php');
+				require_once('pages/authentification.php');
 			}
 		?>
 	</div>

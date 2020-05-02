@@ -2,9 +2,8 @@
 session_start();
 function redirectionUser($login,$password)
 {
-	$file = "fichier.json";
-	$data = file_get_contents($file);
-	$obj = json_decode($data,true);
+  $obj = getData();
+  $questions = getData('questions');
 	//controle page admin
 	for ($i=0; $i <count($obj['admins']); $i++) { 
 		if ($login==$obj['admins'][$i]['Login'] && $password==$obj['admins'][$i]['password']) {
@@ -18,6 +17,7 @@ function redirectionUser($login,$password)
 		if ($login==$obj['joueurs'][$i]['Login'] && $password==$obj['joueurs'][$i]['password']) {
       $_SESSION['joueur'] = $obj['joueurs'][$i];
       $_SESSION['statut'] = 'connecter';
+      $_SESSION['questions'] = nbreQuestionParJeu($questions);
 			header('location:index.php?controlPage=jeux');
 		}
 	}
@@ -36,7 +36,18 @@ function is_connect(){
     header('location:index.php');
   }
 }
+//recuperation des donnees
+function getData($file='fichier'){
+  $data = file_get_contents('data'.'/'.$file.'.json');
+  $data = json_decode($data,true);
+  return $data;
+}
 
+//enregistrer donnees
+function saveData($data,$file='fichier'){
+  $data = json_encode($data);
+  file_put_contents('data'.'/'.$file.'.json', $data);
+}
 
 function loadImage()
 {
@@ -80,15 +91,134 @@ function triDecroissant($tab)
   { 
     for ($j=$i+1; $j < count($tab) ; $j++) 
     { 
-      if ($tab[$i]['score'] < $tab[$j]['score']) 
+      if ($tab[$i]['score'] < $tab[$j]['score'])
       {
         $echange = $tab[$j];
         $tab[$j]=  $tab[$i];
         $tab[$i] = $echange;
       }
     }
+  }
+  return $tab;
+}
 
-    return $tab;
+//liste des questions 
+function listeQuestions($depart,$questionsParPage)
+{
+  $liste = getData('questions');
+  for ($i=$depart; $i < ($depart+$questionsParPage) ; $i++) { 
+    if ($i==count($liste)) {
+      break;
+    }
+    
+    if ($liste[$i]['type'] == 'choixM') {
+      echo $i ."- ". $liste[$i]['question'];
+      for ($j=0; $j < (count($liste[$i]['reponses'])/2); $j++) { 
+        if ($liste[$i]['reponses']['result'.$j]==true) 
+        {?>
+          <li>
+            <input type="checkbox" name="valeur<?=$j?>" checked="checked">
+            <label><?php echo $liste[$i]['reponses']['valeur'.$j]; ?></label>
+          </li><?php
+        }else{ ?>
+          <li>
+           <input type="checkbox" name="valeur<?=$j?>">
+          <label><?php echo $liste[$i]['reponses']['valeur'.$j]; ?></label>
+          </li><?php
+        }
+      }
+    }else if ($liste[$i]['type'] == 'choixS') {
+      echo $i ."- ". $liste[$i]['question'];
+      for ($j=0; $j < (count($liste[$i]['reponses'])/2); $j++) { 
+        if ($liste[$i]['reponses']['result'.$j]==true) { ?>
+          <li>
+            <input type="radio" name="valeur<?=$i?>" checked="checked" >
+            <?php echo $liste[$i]['reponses']['valeur'.$j]; ?>
+          </li><?php
+        }else{?>
+          <li>
+            <input type="radio" name="valeur<?=$i?>">
+            <?php echo $liste[$i]['reponses']['valeur'.$j]; ?>
+          </li><?php
+        }
+      }
+    }else {
+      echo $i ."- ". $liste[$i]['question']; ?>
+      <li>
+        <input type="text" class="form-inscription" name="champs" value="<?= $liste[$i]['reponses']['valeur0'] ?> " readonly>
+      </li><?php
+    }
   }
 }
+
+//generation aleatoire de nombre de question par jeu
+function nbreQuestionParJeu($tableauQuestion) {
+  $nombre = getData("nombreQuestion");
+  $tableau = array();
+  while (count($tableau) < $nombre['nombre']) {
+    $aleatoire = rand(0,(count($tableauQuestion)-1));
+    if (!in_array($tableauQuestion[$aleatoire], $tableau)) {
+      $tableau[] = $tableauQuestion[$aleatoire];
+    }
+  }
+  return $tableau;
+}
+
+function Score($questions)
+{
+  $score = 0; $compare = array(); $verifie= array();
+  for ($i=0; $i <count($questions) ; $i++)
+  { 
+    if ($questions[$i]['type']=='choixS') 
+    {
+      for ($j=0; $j < count($questions[$i]['answer']); $j++) 
+      { 
+        if ((!empty($questions[$i]['answer'][$j])) && in_array($questions[$i]['answer'][$j], $questions[$i]['reponses'])) 
+        {
+          $aide=$questions[$i]['answer'][$j];
+          if ($questions[$i]['reponses'][$aide] == true) 
+          {
+            $score = $score + $questions[$i]['nombrePoints'];
+          }
+        }
+      }
+    }
+    else if ($questions[$i]['type'] == 'choixT') 
+    {
+      if ((!empty($questions[$i]['answer'])) && $questions[$i]['answer'] == $questions[$i]['reponses']['valeur0']) 
+      {
+        $score = $score + $questions[$i]['nombrePoints'];
+      } 
+    }
+    else
+    {
+      for ($j=0; $j < (count($questions[$i]['reponses'])); $j++) 
+      { 
+        if (!empty($questions[$i]['answer'])) 
+        {
+          if (isset($questions[$i]['reponses']['result'.$j]) && $questions[$i]['reponses']['result'.$j]==true) 
+          {
+            $compare[] = 'result'.$j;
+            if (count($compare) == count($questions[$i]['answer'])) 
+            {
+              for ($k=0; $k < count($compare) ; $k++) 
+              { 
+                if ($compare[$k] == $questions[$i]['answer'][$k]) 
+                {
+                  $verifie[] = $k;
+                }
+              }
+            }
+          }
+        }
+      }
+      if (count($verifie) == count($compare)) 
+      {
+        $score = $score + $questions[$i]['nombrePoints'];
+      }
+    } 
+  }
+  return $score;
+}
+//var_dump(Score($_SESSION['questions']));
 ?>

@@ -11,9 +11,7 @@ if(isset($_POST['connexion']))
 
 		if($password == $confirmer)
 		{
-			$json = file_get_contents('../fichier.json');
-			$json = json_decode($json, true);
-
+			$json = getData();
 			$testeur=1;
 	        foreach($json['admins'] as $j){
 	            if ($j['Login'] == $Login) {
@@ -34,8 +32,7 @@ if(isset($_POST['connexion']))
 					$Admin['image'] = $image;
 					$Admin['profil'] = 'Admin';
 					$json['admins'][] = $Admin;
-					$json = json_encode($json);
-					file_put_contents('../fichier.json', $json);
+					$json = saveData($json);
 					$message = "l'admin' a bien été ajouté";
 				}else{ 
 					$message = "seul les extensions jpg et jpeg sont autorisé";
@@ -51,8 +48,8 @@ if(isset($_POST['connexion']))
 		$message = "remplissez tout les champs svp";
 	}
 }
-
 ?>
+<!--<div class="CompteUser"> -->
 <strong>S'inscrire pour proposer des quiz</strong> <hr>
 <form method="POST" action="" id="formulaire-admin" enctype="multipart/form-data">
 	<label>Prenom</label>
@@ -72,7 +69,7 @@ if(isset($_POST['connexion']))
 	<input type="password" name="confirmer" error="error-5" class="form-admin" value="<?php echo $confirmer;?>"><br>
 	<label>Image</label>
 	<input type="hidden" name="MAX_FILE_SIZE" value="2000000"/>
-	<input type="file" name="image" class="form-admin" onchange="loadFile(event)"><br>
+	<input type="file" name="image" class="btn-file" onchange="loadFile(event)"><br>
 	<div class="avatarAdmin">
 		<img  id="output">
 		<h4>Avatar Admin</h4>
