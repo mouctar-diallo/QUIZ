@@ -22,6 +22,9 @@ if (isset($_POST['btn-suivant']))
 		if ($position==$nombre['nombre']) 
 		{
 			$position=$nombre['nombre']-1;
+			$score = Score($_SESSION['questions']);
+			echo $score;
+			
 		}
 	}
 }
@@ -72,9 +75,10 @@ function answerPlayer($position){
 		<div class="ReponseJoueur">
 			<strong>QUESTIONS <?php echo $position+1 .'/'.$nombre['nombre'];?></strong>
 			<h5><?php echo $_SESSION['questions'][$position]['nombrePoints'];?> pts</h5>
-			<form method="POST" action="">
+			<form method="POST" action="" id="form">
+				<input type="hidden" name="" value="<?php echo $nombre['nombre'];?>" id= "limit">
 				<input type="hidden" value="<?php echo $_SESSION['questions'][$position]['type']?>" id="type">
-				<input type="hidden" name="position" value="<?php echo $position; ?>">
+				<input type="hidden" name="position" value="<?php echo $position; ?>" id="position">
 				<textarea name="question" readonly><?php echo $_SESSION['questions'][$position]['question'];?></textarea>
 				<div class="affiche-reponse">
 				<?php
@@ -140,7 +144,7 @@ function answerPlayer($position){
 				?>
 				</div>
 				<input type="submit" name="btn-suivant" class="btn-suiv-joueur" value="suivant" id="checked">
-				<input type="submit" name="btn-precedent" class="btn-prec-joueur" value="precedent">
+				<input type="submit" name="btn-precedent" class="btn-prec-joueur" value="precedent" id="prec">
 			</form>
 		</div>
 		<div class="TopScorer">
@@ -173,7 +177,19 @@ function answerPlayer($position){
 </html>
 
 <script type="text/javascript">
-//validation des inputs de type texte
+document.getElementById('checked');
+var position = document.getElementById('position').value;
+var limit = document.getElementById('limit').value;
+var btn_terminer = document.createElement('input');
+var formulaire = document.getElementById('form');
+if (position==limit-1) 
+{
+	btn_terminer = document.getElementById('checked');
+	btn_terminer.setAttribute('value','terminer');
+	btn_terminer.setAttribute('style','background-color:#0c57e6eb;color:white');
+}
+
+/*//validation des inputs de type texte
 document.getElementById('checked').addEventListener('click',function(e){
 	var error = false;
 	const texts = document.getElementsByTagName('input');
@@ -214,5 +230,5 @@ if (type == 'choixM') {
 			}
 		});
 	});
-}
+}*/
 </script>

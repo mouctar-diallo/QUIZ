@@ -404,10 +404,10 @@ strong{
 	margin-bottom:5px;
 	margin-left: 45px;
 	font-size: 18px;
-	color: darkgreen;
+	color: black;
 }
 .listeJoueur{
-	width: 65%;
+	width: 85%;
 	margin-top: 20px;
 	margin-left: 12%;
 	height: 400px;
@@ -418,7 +418,7 @@ strong{
 .btn-suivant{
 	float: right;
 	margin-top: 3px;
-	margin-right: 23%;
+	margin-right: 3%;
 	background-color:   #20B2AA;
 	width: 25%;
 	height: 30px;

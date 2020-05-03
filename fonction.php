@@ -176,7 +176,7 @@ function Score($questions)
         if ((!empty($questions[$i]['answer'][$j])) && in_array($questions[$i]['answer'][$j], $questions[$i]['reponses'])) 
         {
           $aide=$questions[$i]['answer'][$j];
-          if ($questions[$i]['reponses'][$aide] == true) 
+          if ($questions[$i]['reponses'][$aide]) 
           {
             $score = $score + $questions[$i]['nombrePoints'];
           }
@@ -212,13 +212,15 @@ function Score($questions)
           }
         }
       }
-      if (count($verifie) == count($compare)) 
+      if (!empty($questions[$i]['answer']) && count($verifie) == count($compare)) 
       {
         $score = $score + $questions[$i]['nombrePoints'];
+        $compare = [];
+        $verifie=[];
       }
     } 
   }
   return $score;
 }
-//var_dump(Score($_SESSION['questions']));
+//var_dump($_SESSION['questions']);
 ?>
