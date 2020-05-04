@@ -16,6 +16,7 @@ function redirectionUser($login,$password)
 	for ($i=0; $i <count($obj['joueurs']); $i++) { 
 		if ($login==$obj['joueurs'][$i]['Login'] && $password==$obj['joueurs'][$i]['password']) {
       $_SESSION['joueur'] = $obj['joueurs'][$i];
+      $_SESSION['id'] = $i;
       $_SESSION['statut'] = 'connecter';
       $_SESSION['questions'] = nbreQuestionParJeu($questions);
 			header('location:index.php?controlPage=jeux');
@@ -221,6 +222,13 @@ function Score($questions)
     } 
   }
   return $score;
+}
+function totalScoreParjeu($tableau){
+  $total = 0;
+  for ($i=0; $i < count($tableau) ; $i++) { 
+    $total = $total + $tableau[$i]['nombrePoints'];
+  }
+  return $total;
 }
 //var_dump($_SESSION['questions']);
 ?>

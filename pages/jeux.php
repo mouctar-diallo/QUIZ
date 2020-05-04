@@ -3,7 +3,10 @@ is_connect();
 $players = getData();
 $TopScorers = $players['joueurs'];
 $TopScorers = triDecroissant($TopScorers);
-
+if (isset($_SESSION['id'])) 
+{
+	$idjoueur = $_SESSION['id'];
+}
 $nombre = getData("nombreQuestion");
 $questionParPage = 1;
 if (!empty($_SESSION['questions'])) 
@@ -21,10 +24,13 @@ if (isset($_POST['btn-suivant']))
 		$position++;
 		if ($position==$nombre['nombre']) 
 		{
+			header('location:pages/resultat.php');
 			$position=$nombre['nombre']-1;
-			$score = Score($_SESSION['questions']);
-			echo $score;
-			
+			if (isset($idjoueur) && $players['joueurs'][$idjoueur]['score'] < Score($_SESSION['questions'])) 
+			{
+				$players['joueurs'][$idjoueur]['score'] = Score($_SESSION['questions']);
+				saveData($players);
+			}
 		}
 	}
 }
@@ -162,7 +168,7 @@ function answerPlayer($position){
 						case 'moi': ?>
 							<div class="first-name"><?php echo $_SESSION['joueur']['nom']; ?></div>
 						    <div class="first-name"><?php echo $_SESSION['joueur']['prenom']; ?></div>
-						    <div class="first-name"><?php echo $_SESSION['joueur']['score']; ?></div> <?php
+						    <div class="first-name"><?php if(isset($_SESSION['id'])){ echo $players['joueurs'][$idjoueur]['score'];} ?></div> <?php
 						break;
 					}
 				}
@@ -175,7 +181,6 @@ function answerPlayer($position){
 	</div>
 </body>
 </html>
-
 <script type="text/javascript">
 document.getElementById('checked');
 var position = document.getElementById('position').value;

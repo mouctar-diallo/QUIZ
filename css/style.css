@@ -3,6 +3,16 @@ span{
 	color: red;
 	display: block;
 }
+.SCORE{
+	width: 20%;
+	border-radius: 100%;
+	margin-right: 40%;
+	margin-left: 40%;
+	color: white;
+	font-size: 20px;
+	background-color: red;
+	height: 50%;
+}
 .pageAuth{
 	height: 730px;
 	background-image: url(../images/bg.jpg);
