@@ -65,7 +65,7 @@ if(isset($_POST['connexion']))
 				<span id="error-2"></span>
 				<input type="text" name="nom" error ="error-2" class="form-inscription" value="<?php echo $json['joueurs'][$position]['nom']?>">
 				<span><?php if(!empty($message)){ echo $message; } ?></span><br>
-				<input type="submit" name="connexion" class="btn-inscription" value="créer compte">
+				<input type="submit" name="connexion" class="btn-inscription" value="modifier">
 			</form>
 		</div>
 	</div>

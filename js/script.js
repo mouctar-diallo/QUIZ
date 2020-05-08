@@ -149,3 +149,8 @@ function ifChange(){
 	var dynam = document.getElementById('dynamique');
 	dynam.innerHTML=" ";
 }
+
+
+
+
+

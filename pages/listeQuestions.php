@@ -1,6 +1,7 @@
 <?php
 $pageActuelle = "";
 $liste = getData('questions');
+$data = getData('nombreQuestion');
 $questionsParPage = 5;
 $total = count($liste);
 $nombrePage = ceil($total/$questionsParPage);
@@ -21,7 +22,7 @@ $depart = ($pageActuelle-1)*$questionsParPage;
 //END PAGINATION
 if (isset($_POST['ok'])) 
 {
-	if (!empty($_POST['nombreQuestions'])) 
+	if (!empty($_POST['nombreQuestions']) && $_POST['nombreQuestions']>= 5) 
 	{
 		$nombre = $_POST['nombreQuestions'];
 		$data = getData('nombreQuestion');
@@ -32,9 +33,10 @@ if (isset($_POST['ok']))
 
 ?>
 <!-- contenue liste questions-->
+<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/checkbox.css">
 <form method="POST" action="">
-	<input type="number" name="nombreQuestions" class="form-ok" id="nbre">
+	<input type="number" name="nombreQuestions" class="form-ok" id="nbre" placeholder="<?php echo $data['nombre']; ?>">
 	<input type="submit" name="ok" class="btn-ok" value="OK" id="ok">
 	<input type="hidden" name="pageActuelle" value="<?= $pageActuelle; ?>">
 	<div class="text-nbre-question">Nbre de question/jeu</div>
@@ -49,8 +51,10 @@ if (isset($_POST['ok']))
 		var ok =  document.getElementById('nbre').value;
 		if(!ok){
 			alert('remplissez le champ svp');
-		}else{ 
+		}else if (ok>=5){ 
 			alert('enregistré avec succes');
+		}else{
+		  alert('le nombre doit etre superieur ou egale a 5');
 		}
 	});
 </script>

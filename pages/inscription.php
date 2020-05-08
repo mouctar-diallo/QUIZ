@@ -28,9 +28,7 @@ if(isset($_POST['connexion']))
 					$Admin['nom'] = $nom;
 					$Admin['Login'] = $Login;
 					$Admin['password'] = $password;
-					$Admin['confirmer'] = $confirmer;
 					$Admin['image'] = $image;
-					$Admin['profil'] = 'Admin';
 					$json['admins'][] = $Admin;
 					$json = saveData($json);
 					$message = "l'admin' a bien été ajouté";

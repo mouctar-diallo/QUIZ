@@ -50,7 +50,7 @@ $debut = ($pageActuelle-1)*$joueurParPage;
                 <td><?php echo  $_SESSION['joueurs'][$i]['prenom'];?></td>
                 <td><?php echo  $_SESSION['joueurs'][$i]['score'];?></td>
             <td>
-                <a href="pages/delete.php?login=<?php echo $_SESSION['joueurs'][$i]['Login'] ?>" class="btn btn-danger btn-circle glyphicon glyphicon-trash" title="supprimer"></a>
+                <a href="#" class="btn btn-danger btn-circle glyphicon glyphicon-trash" title="supprimer"></a>
                 <a href="pages/edit.php?login=<?php echo $_SESSION['joueurs'][$i]['Login'] ?>" class="btn btn-info btn-circle glyphicon glyphicon-pencil" title="modifier"></a>
             </td>
 
@@ -65,20 +65,3 @@ $debut = ($pageActuelle-1)*$joueurParPage;
 	<input type="hidden" name="pageActuelle" value="<?php echo $pageActuelle; ?>">
 	<input type="submit" name="suivant" value="suivant" class="btn-suivant">
 </form>
-
-<!--<div class="colonne">Nom</div>
-	<div class="colonne">Prénom</div>
-	<div class="colonne">Score</div>
-    <?php
-	    /*for ($i=$debut; $i < ($debut+$joueurParPage) ; $i++) 
-		{ 
-			if ($i == count($_SESSION['joueurs'])) 
-			{
-			 	break;
-			}?> 
-			<div class="first-name"><?php echo  $_SESSION['joueurs'][$i]['nom']; ?></div>
-			<div class="first-name"><?php echo  $_SESSION['joueurs'][$i]['prenom']; ?></div>
-			<div class="first-name"><?php echo  $_SESSION['joueurs'][$i]['score']; ?> pts</div> <?php
-		}
-	?>	
--->	*/

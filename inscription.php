@@ -29,10 +29,8 @@ if(isset($_POST['connexion']))
 					$joueur['nom'] = $nom;
 					$joueur['Login'] = $Login;
 					$joueur['password'] = $password;
-					$joueur['confirmer'] = $confirmer;
 					$joueur['image'] = $image;
 					$joueur['score'] = 0;
-					$joueur['profil'] = 'joueur';
 					$json['joueurs'][] = $joueur;
 					$json =saveData($json);
 
@@ -67,6 +65,56 @@ if(isset($_POST['connexion']))
 	    reader.readAsDataURL(event.target.files[0]);
 	  };
 	</script>
+	<style type="text/css">
+	@media only screen and (max-width: 768px) {
+		body{
+			width: 100%;
+			height: 100%;
+			background-image: url(images/bg.);
+			margin: 0 auto;
+			}
+		.pageAuth{
+			margin-top: -20px;
+		}
+       .align1{
+       	font-size: 25px;
+       	margin-right: 5%;
+       }
+       .CompteUser h4{
+       	font-size: 15px;
+       	text-align: center;
+       }
+       .CompteUser{
+       	margin-top: 6%;
+       	background-color: #fff;
+       }
+       .CompteUser label{
+       	color: black;
+
+       }
+       .avatar{
+       	margin-top: -12%;
+       	margin-right: 5%;
+       	width: 100px;
+		height:100px;
+       }
+       .avatar img{
+       	width: 100px;
+		height:100px;
+       }
+       .CompteUser .form-inscription{
+       	width: 85%;
+       }
+       .btn-inscription{
+       	margin-top: -8%;
+       	width: 25%;
+       }
+       .avatar h4{
+       	font-size: 12px;
+       	margin-top: -5%;
+       }
+    }
+</style>
 </head>
 <body>
 	<div class="pageAuth">

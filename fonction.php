@@ -79,9 +79,11 @@ function top5_players($tableau)
 {
   for ($i=0; $i < 5; $i++) 
   {?>
-    <div class="first-name"><?php echo $tableau[$i]['nom']; ?></div>
-    <div class="first-name"><?php echo $tableau[$i]['prenom']; ?></div>
-    <div class="first-name"><?php echo $tableau[$i]['score']; ?></div> <?php
+    <tr>
+      <td><?php echo $tableau[$i]['nom']; ?></td>
+      <td><?php echo $tableau[$i]['prenom']; ?></td>
+      <td><?php echo $tableau[$i]['score']; ?></td>
+    </tr><?php
   }
 }
 
@@ -111,9 +113,9 @@ function listeQuestions($depart,$questionsParPage)
     if ($i==count($liste)) {
       break;
     }
-    
     if ($liste[$i]['type'] == 'choixM') {
-      echo $i ."- ". $liste[$i]['question'];
+      echo ($i+1) ."- ". $liste[$i]['question'];
+      LienEditQuestions($i); LienDeleteQuestions($i);
       for ($j=0; $j < (count($liste[$i]['reponses'])/2); $j++) { 
         if ($liste[$i]['reponses']['result'.$j]==true) 
         {?>
@@ -129,7 +131,8 @@ function listeQuestions($depart,$questionsParPage)
         }
       }
     }else if ($liste[$i]['type'] == 'choixS') {
-      echo $i ."- ". $liste[$i]['question'];
+      echo ($i+1) ."- ". $liste[$i]['question'];
+      LienEditQuestions($i); LienDeleteQuestions($i);
       for ($j=0; $j < (count($liste[$i]['reponses'])/2); $j++) { 
         if ($liste[$i]['reponses']['result'.$j]==true) { ?>
           <li>
@@ -144,14 +147,24 @@ function listeQuestions($depart,$questionsParPage)
         }
       }
     }else {
-      echo $i ."- ". $liste[$i]['question']; ?>
+      echo ($i+1)."- ". $liste[$i]['question']; 
+      LienEditQuestions($i); LienDeleteQuestions($i) ?>
       <li>
-        <input type="text" class="form-inscription" name="champs" value="<?= $liste[$i]['reponses']['valeur0'] ?> " readonly>
+        <input type="text" class="form-result" name="champs" value="<?= $liste[$i]['reponses']['valeur0'] ?> " readonly>
       </li><?php
     }
   }
 }
 
+function LienEditQuestions($i)
+{?>
+  <a href="index.php?controlPage=accueil&p=edit&pos=<?php echo $i ?>" class="btn btn-info btn-circle glyphicon glyphicon-pencil" title="modifier"></a><?php
+}
+
+function LienDeleteQuestions($i)
+{?>
+  <a href="pages/deleteQuestion.php?pos=<?php echo $i ?>" class="btn btn-danger btn-circle glyphicon glyphicon-remove" title="supprimer"></a><?php
+}
 //generation aleatoire de nombre de question par jeu
 function nbreQuestionParJeu($tableauQuestion) {
   $nombre = getData("nombreQuestion");
@@ -170,7 +183,7 @@ function Score($questions)
   $score = 0; $compare = array(); $verifie= array();
   for ($i=0; $i <count($questions) ; $i++)
   { 
-    if ($questions[$i]['type']=='choixS') 
+    if ($questions[$i]['type']=='choixS' && !empty($questions[$i]['answer']))
     {
       for ($j=0; $j < count($questions[$i]['answer']); $j++) 
       { 
@@ -223,12 +236,73 @@ function Score($questions)
   }
   return $score;
 }
+
 function totalScoreParjeu($tableau){
   $total = 0;
   for ($i=0; $i < count($tableau) ; $i++) { 
     $total = $total + $tableau[$i]['nombrePoints'];
   }
   return $total;
+}
+
+function Recap($questions)
+{
+  $score = 0; $compare = array(); $verifie= array();
+  $Recap = array();
+  for ($i=0; $i <count($questions) ; $i++)
+  { 
+    if ($questions[$i]['type']=='choixS') 
+    {
+      for ($j=0; $j < count($questions[$i]['answer']); $j++) 
+      { 
+        if ((!empty($questions[$i]['answer'][$j])) && in_array($questions[$i]['answer'][$j], $questions[$i]['reponses'])) 
+        {
+          $aide=$questions[$i]['answer'][$j];
+          if ($questions[$i]['reponses'][$aide]) 
+          { 
+            $Recap[] = $questions[$i]['question'];
+          }
+        }
+      }
+    }
+    else if ($questions[$i]['type'] == 'choixT') 
+    {
+      if ((!empty($questions[$i]['answer'])) && $questions[$i]['answer'] == $questions[$i]['reponses']['valeur0']) 
+      {
+        $Recap[] = $questions[$i]['question'];
+      } 
+    }
+    else
+    {
+      for ($j=0; $j < (count($questions[$i]['reponses'])); $j++) 
+      { 
+        if (!empty($questions[$i]['answer'])) 
+        {
+          if (isset($questions[$i]['reponses']['result'.$j]) && $questions[$i]['reponses']['result'.$j]==true) 
+          {
+            $compare[] = 'result'.$j;
+            if (count($compare) == count($questions[$i]['answer'])) 
+            {
+              for ($k=0; $k < count($compare) ; $k++) 
+              { 
+                if ($compare[$k] == $questions[$i]['answer'][$k]) 
+                {
+                  $verifie[] = $k;
+                }
+              }
+            }
+          }
+        }
+      }
+      if (!empty($questions[$i]['answer']) && count($verifie) == count($compare)) 
+      {
+        $Recap[] = $questions[$i]['question'];
+        $compare = [];
+        $verifie=[];
+      }
+    } 
+  }
+  return $Recap;
 }
 //var_dump($_SESSION['questions']);
 ?>

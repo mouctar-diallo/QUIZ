@@ -17,7 +17,41 @@ if (isset($_POST['connexion']))
 	}
 }
 ?>
-
+<style type="text/css">
+	@media only screen and (max-width: 768px) {
+		body{
+			width: 100%;
+			height: 100%;
+			margin: 0 auto;
+			background-image: url(images/bg.jpg);
+		}
+		.pageAuth{
+			margin-top: -20px;
+		}
+        h5{
+          margin-top: 2%;
+        }
+        span{
+        	font-size: 15px;
+        }
+        .btn-connexion{
+        	margin-top: -1%;
+        }
+        .align{
+        	font-size: 15px;
+        }
+        .form-control, .form-control1{
+        	margin-top: 10%;
+        	border-radius: 70px;
+        }
+        .formulaire{
+        	
+        }
+        .LoginForm{
+        	margin-top: 15%;
+        }
+      }
+</style>
 <div class="LoginForm"><h2 class="align">Login Form</h2><b>x</b></div>
 <div class="formulaire">
 	<form method="POST" action="" id="form-connexion">

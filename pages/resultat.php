@@ -29,7 +29,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="btn btn-success">FIN DU JEU VOICI VOTRE RESULTAT</h2>
+        <h2 class="btn btn-primary">RECAPITULATIF</h2>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -37,14 +37,34 @@
       <div class="modal-body">
         <h2>VOTRE SCORE: <?php if(!empty($_SESSION['questions'])){ echo Score($_SESSION['questions']);} ?> pts</h2>
         <h2>SCORE TOTAL : <?php if(!empty($_SESSION['questions'])){ echo totalScoreParjeu($_SESSION['questions']);} ?> pts</h2><br>
+        <h3 class="btn btn-success">QUESTIONS TROUVES</h3><br>
+        <?php
+          $recap = Recap($_SESSION['questions']);
+          for ($i=0; $i < count($recap); $i++) { ?>
+            <li class="btn btn-success btn-circle glyphicon glyphicon-trash"></li>
+            <?php echo $recap[$i]. '<br>'; ?><?php
+          }
+        ?>
+     <br>
+      <h3 class="btn btn-danger">QUESTIONS NON TROUVES</h3><br>
+        <?php
+          $recap = Recap($_SESSION['questions']);
+          for ($i=0; $i < count($_SESSION['questions']); $i++) { 
+              if (!in_array($_SESSION['questions'][$i]['question'],$recap)) {?>
+                 <li class="btn btn-danger btn-circle glyphicon glyphicon-trash"></li>
+                <?php echo $_SESSION['questions'][$i]['question']. '<br>'; ?><?php
+              }
+          } 
+        ?>
       </div><br>
       <div class="col-lg-3 col-lg-offset-1">
         MERCI ! 
       </div>
       <div class="modal-footer">
-        <h2>&copy; COpiright Mouctar 2020</h2>
+        <h2>&copy; Copiright mouctar 2020</h2>
         <button type="button" class="btn btn-danger" data-dismiss="modal">fermer</button>
       </div>
+    </div>
     </div>
   </div>
 </div>

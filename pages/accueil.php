@@ -7,11 +7,24 @@ is_connect();
 	<title>ADMINISTRATION</title>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<script type="text/javascript" src="js/script.js"></script>
+	<style type="text/css">
+		@media only screen and (max-width: 768px) {
+			body{
+				width: 100%;
+				height: 100%;
+				margin: 0 auto;
+				background-image: url(images/bg.jpg);
+			}
+			.pageAuth{
+				margin-top: -20px;
+			}
+		}
+	</style>
 </head>
 <body>
 	<div class="pageAdmin">
 		<div class="haut">CRÉER ET PARAMÉRTER VOS QUIZZ</div>
-		<a href="../QUIZ/index.php?statut=deconnecter">
+		<a href="index.php?statut=deconnecter">
 			<input type="submit" name="deconnexion" class="btn-deconnexion" value="Déconnexion">
 		</a>
 		<div class="menu-side">
@@ -24,6 +37,7 @@ is_connect();
 				</i><br>
 			</div>
 			 <div class="vertical-menu">
+			 	<a href="index.php?controlPage=accueil&p=dashbord">Tableau de bord<img src="images/icones/ic-liste.png" class="icone"></a>
 				  <a href="index.php?controlPage=accueil&p=listq">Liste Questions<img src="images/icones/ic-liste.png" class="icone"></a>
 				  <a href="index.php?controlPage=accueil&p=add">Créer Admin<img src="images/icones/ajout.png" class="icone"></a>
 				  <a href="index.php?controlPage=accueil&p=listj">Liste joueurs<img src="images/icones/ic-liste.png" class="icone"></a>
@@ -46,6 +60,9 @@ is_connect();
 					break;
 					case 'addQ':
 						include('questions.php');
+					break;
+					case 'edit':
+						include('editQuestion.php');
 					break;
 				}
 			}else{
