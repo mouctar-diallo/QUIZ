@@ -65,6 +65,35 @@ function answerPlayer($position){
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<style type="text/css">
+		@media screen and (min-width: 769px) {
+			body{
+				width: 100%;
+				height: 100%;
+				margin: 0 auto;
+			}
+			.ReponseJoueur textarea{
+				margin-top: 5%;
+				width: 100%;
+				margin-left: 0px;
+				margin-right: 0px;
+				border: solid 1px #20B2AA;
+				/*line-height: 400.4%;*/
+				text-align: center;
+			}
+			.header-text{
+			text-align: center;
+			font-size: 10px;
+			margin-right: 15%;
+			line-height: 2.5;
+			}
+			.TopScorer{
+			margin-top: -40%;
+			margin-right: 1%;
+			margin-left: 24%;
+			
+			}	
+
+		}
 		@media only screen and (max-width: 768px){
 			body{
 			width: 100%;
@@ -75,33 +104,32 @@ function answerPlayer($position){
 		.pageAuth{
 			margin-top: -20px;
 		}
-		.TopScorer{
-			background-color: #fff;
+		
+		.header-text{
+			text-align: center;
+			font-size: 10px;
+			display: none;
 		}
-			.header-text{
-				text-align: center;
-				font-size: 10px;
-				display: none;
-			}
-			.align1{
-				font-size: 20px;
-				margin-right: 10%;
-			}
-			.btn-suiv-joueur .btn-prec-joueur{
-				margin-top: 40%;
-			}
-			.TopScorer{
-				width: 100%;
-				margin-top: 3%;
-				margin-right: 0%;
-				float: right;
-				margin-left: -15%;
-			}
-			.ReponseJoueur{
-				width: 96%;
-				margin: auto;
-				margin-top: 25px;
-			}
+		.align1{
+			font-size: 20px;
+			margin-right: 10%;
+		}
+		.btn-suiv-joueur .btn-prec-joueur{
+			margin-top: 40%;
+		}
+		.TopScorer{
+			width: 100%;
+			margin-top: 3%;
+			margin-right: 0%;
+			float: right;
+			margin-left: -15%;
+			background-color:#fff;
+		}
+		.ReponseJoueur{
+			width: 96%;
+			margin: auto;
+			margin-top: 25px;
+		}
 
 
 			.ReponseJoueur strong{
@@ -110,11 +138,11 @@ function answerPlayer($position){
 				width: 100%;
 			}
 			.ReponseJoueur textarea{
-				margin-left: 5px;
 				margin-top: 5%;
-				margin-right: 3px;
-				width: 96%;
-				height: 90px;
+				width: 100%;
+				margin-left: 0px;
+				margin-right: 0px;
+				border: solid 1px #20B2AA;
 				/*line-height: 400.4%;*/
 				text-align: center;
 			}

@@ -571,7 +571,7 @@ strong{
 	border-radius: 13px;
 }
 
-textarea{
+.questionnaire textarea{
 	width: 90%;
 	height: 90px;
 	border-color:   #20B2AA;
@@ -623,7 +623,7 @@ select{
 	width: 65%;
 	margin-top: 7px;
 	margin-left: 2%;
-	height: 550px;
+	height: 625px;
 	background-color: white;
 	border: solid 2px #20B2AA;
 	border-color:  #20B2AA;
@@ -663,8 +663,9 @@ select{
 }
 .TopScorer{
 	float: right;
+	background-color: #fff;
 	width: 25%;
-	margin-right: 3%;
+	margin-right: 2%;
 	margin-top: -40%;
 	border-color:  #20B2AA;
 	border-radius: 13px;
@@ -701,14 +702,11 @@ select{
 }
 .ReponseJoueur textarea{
 	margin-top: 15px;
-	margin-left: 14%;
 	text-align: center;
 	font-size: 20px;
-	font-family: sans-serif;
 	line-height: -0.5px;
-	width: 70%;
-	height: 30px;
-	border:   solid 1px #20B2AA;
+	margin-left: 5px;
+	width: 820px;
 }
 .ReponseJoueur strong{
 	margin-top: 2%;

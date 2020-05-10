@@ -1,8 +1,21 @@
 <?php
   include('../fonction.php');
+  $players = file_get_contents('../data/fichier.json');
+  $players = json_decode($players,true);
+  if (!empty($_SESSION['id']))
+  {
+    $idjoueur = $_SESSION['id'];
+  }
   if (empty($_SESSION['questions'])) 
   {
     header('location:../index.php');
+  }
+  if (isset($idjoueur) && $players['joueurs'][$idjoueur]['score'] < Score($_SESSION['questions'])) 
+  {
+    $players['joueurs'][$idjoueur]['score'] = Score($_SESSION['questions']);
+    $json = $players;
+    $json = json_encode($json);
+    file_put_contents('../data/fichier.json', $json);
   }
 ?>
 <!DOCTYPE html>
