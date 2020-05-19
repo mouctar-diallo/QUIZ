@@ -149,7 +149,9 @@
                   {
                     if (!empty($_SESSION['questions'][$i]['answer'])) 
                     {
-                      if ($_SESSION['questions'][$i]['answer'] == $_SESSION['questions'][$i]['reponses']['valeur0']) {
+                      $test = strtolower($_SESSION['questions'][$i]['answer']);
+                      $rep = strtolower($_SESSION['questions'][$i]['reponses']['valeur0']);
+                      if ($test == $rep) {
                         echo $vraie;
                       }
                       else{
